@@ -15,13 +15,13 @@ import matchesWithTeamInfosRouter from "./routes/matchesWithTeamInfo.js";
 import playedatchesWithTeamInfosRouter from "./routes/playedatchesWithTeamInfosRouter.js";
 import standingsRouter from "./routes/standingsRouter.js";
 import corsOptions from "./config/corsOptions.js";
+import credentials from "./middleware/credentials.js";
 
 const app = express();
 dotenv.config();
 const port = 8001;
 app.use(express.json());
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+// app.use(helmet());
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(
@@ -29,6 +29,8 @@ app.use(
     extended: false,
   })
 );
+// app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(credentials);
 app.use(cors(corsOptions));
 
 app.use("/api/join/league", joinLeagueRouter);
@@ -40,6 +42,9 @@ app.use("/api/update-match", updateMatcheRouter);
 app.use("/api/matches-with-team-infos", matchesWithTeamInfosRouter);
 app.use("/api/plyed-matches-with-team-infos", playedatchesWithTeamInfosRouter);
 app.use("/api/standings", standingsRouter);
+app.get("/test", (req, res) => {
+  res.send("heyyyy");
+});
 const connect = async () => {
   try {
     await mongoose.connect(process.env.DBURI, {

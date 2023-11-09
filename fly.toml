@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for old-sound-9762 on 2023-11-09T17:46:55+01:00
+# fly.toml app configuration file generated for long-sun-5530 on 2023-11-09T21:12:31+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "old-sound-9762"
-primary_region = "mad"
+app = "long-sun-5530"
+primary_region = "cdg"
 
 [build]
 
