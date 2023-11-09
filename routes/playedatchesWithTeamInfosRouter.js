@@ -5,7 +5,7 @@ const matchesWithTeamInfosRouter = express.Router();
 
 matchesWithTeamInfosRouter.get("/", async (req, res) => {
   try {
-    const result = await matches
+    const unSortedResult = await matches
       .find({ status: "played" })
       .populate({
         path: "homeTeam",
@@ -20,7 +20,7 @@ matchesWithTeamInfosRouter.get("/", async (req, res) => {
         },
       })
       .exec();
-
+    const result = unSortedResult.sort((a, b) => a.day - b.day);
     res.status(200).json(result);
   } catch (error) {
     console.error("Error:", error);
