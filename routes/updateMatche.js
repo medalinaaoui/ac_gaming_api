@@ -6,7 +6,7 @@ const updateMatchResultRouter = express.Router();
 updateMatchResultRouter.put("/:matchId", async (req, res) => {
   try {
     const matchId = req.params.matchId;
-    const { pass, ...result } = req.body;
+    const { pass, result } = req.body;
 
     const match = await matches.findById(matchId);
 

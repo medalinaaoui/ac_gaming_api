@@ -1,3 +1,20 @@
+const players = [
+  "Player1",
+  "Player2",
+  "Player3",
+  "Player4",
+  "Player99",
+  "Player8",
+  "Player0",
+  "Player22",
+];
+const today = new Date();
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, "0");
+const day = String(today.getDate()).padStart(2, "0");
+
+const formattedDate = `${year}-${month}-${day}`;
+
 const matchHandler = (players, currDate) => {
   const matches = [];
 
@@ -46,13 +63,7 @@ const matchHandler = (players, currDate) => {
         return "Unknown time";
     }
   }
-
-  // Shuffle the matches array
-  for (let i = matches.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [matches[i], matches[j]] = [matches[j], matches[i]];
-  }
-
   return matches;
 };
-export default matchHandler;
+
+console.log(matchHandler(players, formattedDate));
