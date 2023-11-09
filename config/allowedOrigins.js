@@ -1,6 +1,5 @@
 const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
+  "https://old-sound-9762.fly.dev",
   "https://ac-gaming-client-med-ali.vercel.app/",
 ];
 
