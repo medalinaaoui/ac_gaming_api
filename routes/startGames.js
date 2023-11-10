@@ -6,17 +6,12 @@ const startGamesRouter = express.Router();
 
 startGamesRouter.get("/", async (req, res) => {
   const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
-
-  const formattedDate = `${year}-${month}-${day}`;
 
   try {
     const userCount = await users.find({}, "name");
-
     if (userCount.length >= 10) {
-      const games = matchHandler(userCount, formattedDate);
+      const games = matchHandler(userCount, Number(day));
       const matchesCount = await matches.countDocuments({});
       if (matchesCount === 0) {
         const generatedGames = await matches.insertMany(games);
