@@ -15,9 +15,9 @@ updateMatchResultRouter.put("/:matchId", async (req, res) => {
         return res.status(404).json({ error: "Match not found" });
       }
 
-      if (match.status !== "upcoming") {
-        return res.status(400).json({ error: "Match is not upcoming" });
-      }
+      // if (match.status !== "upcoming") {
+      //   return res.status(400).json({ error: "Match is not upcoming" });
+      // }
 
       match.result = result;
       match.status = "played";
